@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recruiter Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h2>JobPortal</h2>
+    <ul>
+      <li>Home</li>
+      <li>Jobs</li>
+      <li>Companies</li>
+      <li>Login</li>
+      <li>Signup</li>
+    </ul>
+  </nav>
+
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="form-section">
+    <h2 class="title">Job Detail</h2>
+
+    <div class="grid">
+
+      <input type="text" placeholder="Enter a Job Title / Role" id="title">
+      <select>
+        <option>Select Industry</option>
+        <option>IT</option>
+        <option>Finance</option>
+      </select>
+
+      <input type="number" placeholder="No. of Openings">
+
+      <div class="range">
+        <input type="number" placeholder="Min Experience">
+        <input type="number" placeholder="Max Experience">
+      </div>
+
+      <select>
+        <option>Select Gender Preference</option>
+        <option>Any</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+      <div class="range">
+        <input type="number" placeholder="Annual Salary (min)">
+        <input type="number" placeholder="Annual Salary (max)">
+      </div>
+
+      <select>
+        <option>Select Country</option>
+        <option>India</option>
+      </select>
+
+      <input type="text" placeholder="Job Location">
+
+    </div>
+
+    <textarea placeholder="Please specify job requirements, skills, etc." id="desc"></textarea>
+
+    <button onclick="submitForm()">Continue →</button>
+  </div>
+
+  <!-- RIGHT INFO  -->
+  <div class="info-section">
+
+    <h3>Hire with Easy : <span>Simple Steps, Perfect Candidate!</span></h3>
+
+    <div class="step">
+      <div class="icon">📄</div>
+      <div>
+        <h4>Add Job Details</h4>
+        <p>Post jobs easily and reach ideal candidates.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="icon">🏢</div>
+      <div>
+        <h4>Provide Company Details</h4>
+        <p>Share company info to improve visibility.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="icon">✔</div>
+      <div>
+        <h4>Verify Email/Mobile</h4>
+        <p>Ensure trust and security.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="icon">👥</div>
+      <div>
+        <h4>Access Candidates</h4>
+        <p>Browse job-seeker database.</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
