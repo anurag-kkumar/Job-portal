@@ -1,28 +1,36 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-export const protect = (req, res, next) => {
-  try {
-    let token;
+export const protect = async (req, res, next) => {
+  let token;
 
-    // 1. Check if token exists in headers
-    if (
-      req.headers.authorization &&
-      req.headers.authorization.startsWith("Bearer")
-    ) {
-      // 2. Extract token
-      token = req.headers.authorization.split(" ")[1];
+  token = req.cookies.jwt;
 
-      // 3. Verify token
+  if (token) {
+    try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // 4. Attach user to request
-      req.user = decoded;
-
+      req.user = await User.findById(decoded.userId).select('-password');
       next();
-    } else {
-      return res.status(401).json({ message: "Not authorized, no token" });
+    } catch (error) {
+      res.status(401).json({ success: false, message: 'Not authorized, token failed' });
     }
-  } catch (error) {
-    return res.status(401).json({ message: "Token failed" });
+  } else {
+    res.status(401).json({ success: false, message: 'Not authorized, no token' });
+  }
+};
+
+export const isRecruiter = (req, res, next) => {
+  if (req.user && req.user.role === 'recruiter') {
+    next();
+  } else {
+    res.status(403).json({ success: false, message: 'Not authorized as a recruiter' });
+  }
+};
+
+export const isCandidate = (req, res, next) => {
+  if (req.user && req.user.role === 'candidate') {
+    next();
+  } else {
+    res.status(403).json({ success: false, message: 'Not authorized as a candidate' });
   }
 };
